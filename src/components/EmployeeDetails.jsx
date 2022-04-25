@@ -11,14 +11,19 @@ export const EmployeeDetails = () => {
     axios.get(`http://localhost:8080/employee`).then(({ data }) => {
       data.data.map((elem) => {
         if (elem.id == id) {
-          return setEData(data.data);
+          return setEData(elem);
         }
       });
     });
   });
 
+  console.log(eData);
+
   return (
+      // {eData.map((x) => {
+      // })}
     <div className="user_details">
+        
       <img className="user_image" />
       <h4 className="user_name"></h4>
       <span className="user_salary">$</span>
