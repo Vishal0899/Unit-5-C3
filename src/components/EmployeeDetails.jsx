@@ -1,6 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const EmployeeDetails = () => {
+  const { id } = useParams();
+
+  const [eData, setEData] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/employee`).then(({ data }) => {
+      data.data.map((elem) => {
+        if (elem.id == id) {
+          return setEData(data.data);
+        }
+      });
+    });
+  });
+
   return (
     <div className="user_details">
       <img className="user_image" />
